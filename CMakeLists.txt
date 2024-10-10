@@ -51,9 +51,10 @@ endif()
 include(FetchContent)
 
 if(BUILD_L0_LOADER_TESTS)
-	FetchContent_Declare(
-		googletest
-		URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
+	FetchContent_Declare( googletest
+        GIT_REPOSITORY https://github.com/google/googletest/
+        GIT_TAG v1.15.2
+        GIT_SHALLOW FALSE  # ensure submodules are checked out
 	)
 
 	# For Windows: Prevent overriding the parent project's compiler/linker settings
