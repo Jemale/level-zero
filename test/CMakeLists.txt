@@ -5,6 +5,10 @@ add_executable(
   tests
   loader_api.cpp
 )
+add_executable(
+  test_helper
+  test_helper.cpp
+)
 target_include_directories(tests PRIVATE ${CMAKE_SOURCE_DIR}/include)
 target_link_libraries(
   tests
