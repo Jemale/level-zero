@@ -6,6 +6,10 @@
  *
  */
 
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
 #include "gtest/gtest.h"
 
 #include "loader/ze_loader.h"
@@ -222,7 +226,7 @@ int run_windows_test() {
   si.hStdOutput = hWrite;
   si.dwFlags |= STARTF_USESTDHANDLES;
 
-  if (!CreateProcess("true",  // App Name
+  if (!CreateProcess("zello_world",  // App Name
                      nullptr, // Command Line
                      nullptr, // Process handle not inherited
                      nullptr, // Thread handle not inherited
@@ -256,6 +260,8 @@ int run_windows_test() {
   }
 
   std::string result_string(output.begin(), output.end());
+  EXPECT_EQ(result_string, "");
+  
 
   if (!CloseHandle(pi.hProcess)) {
     std::cerr << "CloseHandle Process failed\n";
@@ -265,6 +271,8 @@ int run_windows_test() {
     std::cerr << "CloseHandle Thread failed\n";
     return 1;
   }
+
+  return 0;
 }
 #endif
 
